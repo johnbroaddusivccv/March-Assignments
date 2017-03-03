@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>API Review</title>
+</head>
+
+<body>
+
+  <div class = "test"></div>
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.js"></script>
+  <script type="text/javascript">
+
+
+  $.ajax({
+    url: "http://www.omdbapi.com/?t=Moonlight",
+    method: "GET",
+
+  }).done(function(response){
+    console.log(response);
+    console.log(response.Director);
+    $("title").html(response.Plot);
+    $(".test").html(response.Plot);
+    // $(".test").text(JSON.stringify(response));
+
+  });
+    
+    
+  </script>
+
+</body>
+
+</html>
