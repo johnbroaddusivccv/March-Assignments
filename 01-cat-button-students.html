@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Magical Cat Button</title>
+</head>
+
+<body>
+  <button id="cat-button">magical cat button</button>
+  <div id="images">
+  </div>
+  <script src="http://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script type="text/javascript">
+    //creating an event for the button
+    $("#cat-button").on("click", function() {
+
+      //address of API to use storing a rul for random inage
+      var queryURL = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cats";
+
+      // retrieving data from api. get is a read only request. its a convention for APIs
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+
+      //ending the function and returning data
+      .done(function(response) {
+
+        //grabbing parsed data from apu
+        var imageUrl = response.data.image_original_url;
+
+        //putting the image on the pagg
+        var catImage = $("<img>");
+
+        //setting the image a source and alt attribute
+        catImage.attr("src", imageUrl);
+        catImage.attr("alt", "cat image");
+
+        //adding image to the top
+        $("#images").prepend(catImage);
+      });
+    });
+  </script>
+</body>
+
+</html>
